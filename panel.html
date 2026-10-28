@@ -73,6 +73,39 @@
   function showLogin(){ login.style.display="flex"; }
   function hideLogin(){ login.style.display="none"; }
 
+  var lastCount = 0;
+  var firstLoad = true;
+
+  // Звуковой сигнал (Web Audio — работает в WebView всегда)
+  function beep(){
+    try {
+      var C = window.AudioContext || window.webkitAudioContext;
+      if (C) {
+        var ctx = new C();
+        var o = ctx.createOscillator();
+        var g = ctx.createGain();
+        o.connect(g); g.connect(ctx.destination);
+        o.frequency.value = 880; o.type = "sine";
+        g.gain.value = 0.25;
+        o.start();
+        g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.35);
+        o.stop(ctx.currentTime + 0.35);
+        // повторный короткий сигнал
+        setTimeout(function(){ try{ var o2=ctx.createOscillator(); var g2=ctx.createGain(); o2.connect(g2); g2.connect(ctx.destination); o2.frequency.value=1100; o2.type="sine"; g2.gain.value=0.2; o2.start(); g2.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+0.25); o2.stop(ctx.currentTime+0.25); }catch(e){} }, 300);
+      }
+    } catch(e) {}
+  }
+
+  // Системное уведомление (требует разрешения; в WebView может не работать, звук — главный)
+  function notify(title, body){
+    try {
+      if ("Notification" in window) {
+        if (Notification.permission === "granted") { new Notification(title, {body: body}); }
+        else if (Notification.permission !== "denied") { Notification.requestPermission(); }
+      }
+    } catch(e) {}
+  }
+
   function load(){
     if (!key) { showLogin(); return; }
     fetch(APP_URL + "?p=" + encodeURIComponent(key) + "&list=1")
@@ -80,7 +113,13 @@
       .then(function(items){
         if (items && items.error) { showLogin(); document.getElementById("err").textContent="Неверный ключ"; return; }
         hideLogin();
-        cnt.textContent = (items?items.length:0) + " заявок";
+        var n = (items?items.length:0);
+        // уведомление о новой заявке (когда число выросло и это не первый запуск)
+        if (firstLoad===false && n > lastCount) {
+          beep(); notify("🔔 Новая заявка!", "Только что поступила заявка на компьютерную помощь.");
+        }
+        firstLoad = false; lastCount = n;
+        cnt.textContent = n + " заявок";
         list.innerHTML = (items && items.length)
           ? items.map(render).join("")
           : '<div class="empty">Пока заявок нет.</div>';

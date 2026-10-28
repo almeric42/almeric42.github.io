@@ -4,33 +4,32 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Панель заявок</title>
-<meta name="theme-color" content="#2f6fed">
+<meta name="theme-color" content="#16151d">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <style>
-  :root{--bg:#f4f7fb;--card:#fff;--ink:#1c2633;--muted:#5d6b7d;--line:#dbe4ee;--accent:#2f6fed;--green:#1fa96a;--warn:#e5a50a;--red:#d9462f}
+  :root{--bg:#16151d;--card:#211f2b;--ink:#edeafa;--muted:#b9b4cf;--line:#35324a;--accent:#7a8cff;--green:#3ecf8e;--warn:#e5a50a;--red:#ff6b5e}
   *{box-sizing:border-box}html,body{margin:0;padding:0}
   body{font-family:-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}
   .wrap{max-width:640px;margin:0 auto;padding:.8rem .8rem 3rem}
   .bar{display:flex;align-items:center;justify-content:space-between;gap:.5rem;margin-bottom:.4rem}
-  .bar h1{font-size:1.15rem;margin:0}.bar .cnt{font-size:.85rem;color:var(--muted)}
+  .bar h1{font-size:1.15rem;margin:0;color:var(--ink)}.bar .cnt{font-size:.85rem;color:var(--muted)}
   .login{position:fixed;inset:0;background:var(--bg);display:none;align-items:center;justify-content:center;padding:1rem;z-index:50}
-  .login .box{background:#fff;border:1px solid var(--line);border-radius:14px;padding:1.5rem;width:100%;max-width:320px;box-shadow:0 10px 30px rgba(28,50,90,.1)}
-  .login h2{margin:0 0 .3rem;font-size:1.1rem}.login p{color:var(--muted);font-size:.85rem}
-  .login input{width:100%;padding:.7rem .8rem;border:1px solid var(--line);border-radius:10px;font:inherit;margin:1rem 0 .6rem}
-  .login button{width:100%;border:none;background:var(--accent);color:#fff;font-weight:700;padding:.75rem;border-radius:10px;cursor:pointer}
+  .login .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:1.5rem;width:100%;max-width:320px}
+  .login h2{margin:0 0 .3rem;font-size:1.1rem;color:var(--ink)}.login p{color:var(--muted);font-size:.85rem}
+  .login input{width:100%;padding:.7rem .8rem;border:1px solid var(--line);border-radius:10px;font:inherit;background:#16151d;color:var(--ink);margin:1rem 0 .6rem}
+  .login button{width:100%;border:none;background:var(--accent);color:#16151d;font-weight:700;padding:.75rem;border-radius:10px;cursor:pointer}
   #err{color:var(--red);font-size:.85rem;min-height:1.1em}
   .zay{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;padding:.85rem 1rem;margin-top:.7rem}
-  .zay.newx{border-left-color:var(--accent)}
   .zay .top{display:flex;justify-content:space-between;gap:.5rem;font-size:.77rem;color:var(--muted)}
-  .zay h3{margin:.15rem 0 .25rem;font-size:1.02rem}
-  .urg{font-size:.7rem;font-weight:700;padding:.15rem .5rem;border-radius:999px;background:#eee}
-  .urg-срочно{background:#ffe0da;color:var(--red)}.urg-сегодня-завтра{background:#fff3d6;color:#946200}.urg-не срочно,.urg-не{background:#e6f6ee;color:var(--green)}
+  .zay h3{margin:.15rem 0 .25rem;font-size:1.02rem;color:var(--ink)}
+  .urg{font-size:.7rem;font-weight:700;padding:.15rem .5rem;border-radius:999px;background:var(--line);color:var(--muted)}
+  .urg-срочно{background:#4a1f1a;color:#ff8b80}.urg-сегодня-завтра{background:#4a3a12;color:#f0c060}.urg-не срочно,.urg-не{background:#12402b;color:#5fe8a8}
   .meta{font-size:.82rem;color:var(--muted);margin:.12rem 0}
   .svc{font-size:.8rem;color:var(--accent);margin:.2rem 0;font-weight:600}
-  .msg{margin:.45rem 0 0;font-size:.93rem;white-space:pre-wrap}
+  .msg{margin:.45rem 0 0;font-size:.93rem;white-space:pre-wrap;color:var(--ink)}
   .empty{color:var(--muted);text-align:center;padding:2rem}
-  .refresh{display:block;width:100%;background:#fff;border:1px solid var(--line);border-radius:10px;padding:.6rem;color:var(--accent);font-weight:600;cursor:pointer;margin-bottom:.4rem}
-  .title{font-weight:800;color:var(--accent);margin:.6rem 0 .2rem}
+  .refresh{display:block;width:100%;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:.6rem;color:var(--accent);font-weight:600;cursor:pointer;margin-bottom:.4rem}
+  .hint{color:var(--muted);font-size:.75rem;text-align:center;margin-top:.5rem}
 </style>
 </head>
 <body>
@@ -53,13 +52,8 @@
 
 <script>
 (function(){
-  // ⭐ ССЫЛКА на ваш Google Apps Script (замените)
   var APP_URL = "https://script.google.com/macros/s/AKfycby5pCIwXVF4vWlctlzOwQdJASe9jhWSv4F3SDFnu9SnNen4zwY2cCQwj2gZ4rG4UHSt/exec";
-  // ⭐ Ключ должен совпадать с PANEL_KEY из Code.gs
-  var PANEL_KEY = "sekret123";
-
-  var key = "";
-  try { key = localStorage.getItem("zk_key") || ""; } catch(e){}
+  var PANEL_KEY_DEFAULT = "sekret123";
 
   var list = document.getElementById("list");
   var login = document.getElementById("login");
@@ -67,30 +61,28 @@
 
   function esc(t){return String(t==null?"":t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
 
-  if (key) { login.style.display="none"; load(); }
-  else { login.style.display="flex"; }
+  // Ключ берём: 1) из URL ?k=..., 2) из localStorage, 3) иначе прячем
+  var qp = new URLSearchParams(location.search);
+  var aKey = qp.get("k") || "";
+  var sKey = ""; try{ sKey = localStorage.getItem("zk_key")||""; }catch(e){}
+  var key = aKey || sKey;
 
-  document.getElementById("go").onclick = function(){
-    var v = document.getElementById("p").value.trim();
-    if (!v) return;
-    key = v;
-    try{localStorage.setItem("zk_key", v);}catch(e){}
-    login.style.display="none";
-    load();
-  };
+  function showLogin(){ login.style.display="flex"; }
+  function hideLogin(){ login.style.display="none"; }
 
   function load(){
+    if (!key) { showLogin(); return; }
     fetch(APP_URL + "?p=" + encodeURIComponent(key) + "&list=1")
       .then(function(r){return r.json();})
       .then(function(items){
-        if (items && items.error) { login.style.display="flex"; document.getElementById("err").textContent="Неверный ключ"; return; }
+        if (items && items.error) { showLogin(); document.getElementById("err").textContent="Неверный ключ"; return; }
+        hideLogin();
         cnt.textContent = (items?items.length:0) + " заявок";
         list.innerHTML = (items && items.length)
           ? items.map(render).join("")
           : '<div class="empty">Пока заявок нет.</div>';
       })
       .catch(function(){ list.innerHTML='<div class="empty">Не удалось загрузить. Проверьте интернет.</div>'; });
-    // автообновление
     setTimeout(load, 20000);
   }
 
@@ -108,7 +100,20 @@
       '</div>';
   }
 
+  document.getElementById("go").onclick = function(){
+    var v = document.getElementById("p").value.trim();
+    if (!v) return;
+    key = v;
+    try{localStorage.setItem("zk_key", v);}catch(e){}
+    hideLogin();
+    load();
+  };
+
   document.getElementById("reload").onclick = function(){ if(key) load(); };
+
+  // Запуск: если ключ известен - сразу грузим список
+  if (key) { hideLogin(); load(); }
+  else { showLogin(); }
 })();
 </script>
 </body>

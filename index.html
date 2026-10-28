@@ -112,14 +112,29 @@
   var ok = document.getElementById("ok");
   var err = document.getElementById("err");
 
+  // ⭐ ССЫЛКА НА ВАШ Google Apps Script (замените на свою!)
+  var APP_URL = "https://script.google.com/macros/s/AKfycby5pCIwXVF4vWlctlzOwQdJASe9jhWSv4F3SDFnu9SnNen4zwY2cCQwj2gZ4rG4UHSt/exec";
+
   form.addEventListener("submit", function(e){
     e.preventDefault();
+    if (!APP_URL || APP_URL.indexOf("ЗАМЕНИТЕ") === 0) {
+      err.style.display="block"; err.textContent="Сайт ещё не подключён к базе. Подставьте ссылку Apps Script.";
+      return;
+    }
     var svc = Array.prototype.map.call(form.querySelectorAll('input[name="Нужно"]:checked'), function(x){return x.value;});
-    var fd = new FormData(form);
-    // добавляем выбранные услуги в текст, чтобы ушли в письмо
-    if (svc.length) fd.append("Нужно", svc.join(", "));
+    var data = {
+      name: form.name.value.trim(),
+      device: form.device.value,
+      contact: form.contact.value.trim(),
+      urgency: form.time ? "не срочно" : "не срочно",
+      time: (form.time ? form.time.value : "").trim(),
+      svc: svc,
+      msg: form.msg.value.trim()
+    };
     btn.disabled = true; btn.textContent = "Отправляем…";
-    fetch(form.action, { method:"POST", body:fd, mode:"no-cors" })
+    fetch(APP_URL, { method:"POST", mode:"no-cors",
+      headers:{"Content-Type":"text/plain;charset=utf-8"},
+      body: JSON.stringify(data) })
       .then(function(){ ok.style.display="block"; err.style.display="none"; form.reset(); })
       .catch(function(){ err.style.display="block"; ok.style.display="none"; })
       .finally(function(){ btn.disabled=false; btn.textContent="Отправить заявку →"; });

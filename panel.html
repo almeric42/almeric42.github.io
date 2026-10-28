@@ -30,6 +30,9 @@
   .empty{color:var(--muted);text-align:center;padding:2rem}
   .refresh{display:block;width:100%;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:.6rem;color:var(--accent);font-weight:600;cursor:pointer;margin-bottom:.4rem}
   .hint{color:var(--muted);font-size:.75rem;text-align:center;margin-top:.5rem}
+  .del{display:inline-block;margin-top:.6rem;background:none;border:1px solid #6b3a34;color:#ff8b80;border-radius:9px;padding:.35rem .7rem;font-size:.8rem;cursor:pointer}
+  .act{display:flex;gap:.5rem;margin-top:.6rem;flex-wrap:wrap}
+  .act .dell{background:none;border:1px solid #6b3a34;color:#ff8b80;border-radius:9px;padding:.35rem .7rem;font-size:.8rem;cursor:pointer}
 </style>
 </head>
 <body>
@@ -52,7 +55,7 @@
 
 <script>
 (function(){
-  var APP_URL = "https://script.google.com/macros/s/AKfycby5pCIwXVF4vWlctlzOwQdJASe9jhWSv4F3SDFnu9SnNen4zwY2cCQwj2gZ4rG4UHSt/exec";
+  var APP_URL = "https://script.google.com/macros/s/AKfycbzYc8Lix9yaMkr5u-1hwX2-x7-Lira6QPQwk26i13eb8VDIPzZeKd9KWcDVYl3HQMZB/exec";
   var PANEL_KEY_DEFAULT = "sekret123";
 
   var list = document.getElementById("list");
@@ -90,15 +93,32 @@
     var u = esc(o["Срочность"]||"не срочно");
     var cls = (u && u.indexOf("срочно")>-1) ? "urg-срочно" : "urg-не";
     var date = o["Дата"] ? new Date(o["Дата"]).toLocaleString("ru-RU",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"}) : "";
-    return '<div class="zay">'+
+    var idx = o.idx;
+    return '<div class="zay" data-idx="'+idx+'">'+
       '<div class="top"><span>'+esc(date)+'</span><span class="urg '+cls+'">'+u+'</span></div>'+
       '<h3>'+esc(o["Имя"])+'</h3>'+
       '<div class="meta">📞 '+esc(o["Контакт"])+' <span style="color:var(--muted)">('+esc(o["Устройство"]||"")+')</span></div>'+
       (o["Услуги"]?'<div class="svc">'+esc(o["Услуги"])+'</div>':'')+
       (o["Время_связи"]?'<div class="meta">🕒 '+esc(o["Время_связи"])+'</div>':'')+
       '<div class="msg">'+esc(o["Проблема"])+'</div>'+
+      '<div class="act"><button class="dell" data-del="'+idx+'">🗑 Удалить</button></div>'+
       '</div>';
   }
+
+  // Удаление заявки (клик по кнопке)
+  document.getElementById("list").addEventListener("click", function(e){
+    var btn = e.target.closest("[data-del]");
+    if (!btn) return;
+    var idx = btn.getAttribute("data-del");
+    if (!confirm("Удалить заявку?")) return;
+    var all = btn.closest(".zay");
+    fetch(APP_URL + "?p=" + encodeURIComponent(key) + "&del=" + idx)
+      .then(function(r){ return r.json(); })
+      .then(function(j){
+        if (j && j.ok) { load(); }
+        else { alert("Не удалось удалить"); }
+      });
+  });
 
   document.getElementById("go").onclick = function(){
     var v = document.getElementById("p").value.trim();

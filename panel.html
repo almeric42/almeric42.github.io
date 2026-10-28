@@ -29,6 +29,8 @@
   .msg{margin:.45rem 0 0;font-size:.93rem;white-space:pre-wrap;color:var(--ink)}
   .empty{color:var(--muted);text-align:center;padding:2rem}
   .refresh{display:block;width:100%;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:.6rem;color:var(--accent);font-weight:600;cursor:pointer;margin-bottom:.4rem}
+  .share{background:var(--accent);color:#16151d;border-color:var(--accent);margin-top:.3rem}
+  .share:active{opacity:.8}
   .hint{color:var(--muted);font-size:.75rem;text-align:center;margin-top:.5rem}
   .del{display:inline-block;margin-top:.6rem;background:none;border:1px solid #6b3a34;color:#ff8b80;border-radius:9px;padding:.35rem .7rem;font-size:.8rem;cursor:pointer}
   .act{display:flex;gap:.5rem;margin-top:.6rem;flex-wrap:wrap}
@@ -39,6 +41,7 @@
 <div class="wrap">
   <div class="bar"><h1>📥 Заявки</h1><span class="cnt" id="cnt"></span></div>
   <button class="refresh" id="reload">⟳ Обновить</button>
+  <button class="refresh share" id="share">📤 Поделиться сайтом</button>
   <div id="list"></div>
 </div>
 
@@ -169,6 +172,35 @@
   };
 
   document.getElementById("reload").onclick = function(){ if(key) load(); };
+
+  // Поделиться ссылкой на сайт для клиентов
+  function shareSite(){
+    var sURL = "https://clck.ru/3Wk8Pi";
+    var text = "Компьютерная помощь. Оставьте заявку онлайн за минуту — перезвоню и спишемся: " + sURL;
+    // Нативный шеринг Android (работает в WebView с WebChromeClient)
+    if (navigator.share) {
+      navigator.share({ title: "Компьютерная помощь", text: text, url: sURL })
+        .catch(function(){ clipboardShare(text); });
+    } else {
+      clipboardShare(text);
+    }
+  }
+  function clipboardShare(text){
+    // Запасной вариант — скопировать ссылку в буфер
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text).then(function(){
+        flash("Ссылка скопирована: https://clck.ru/3Wk8Pi");
+      }, function(){ flash("Ссылка: https://clck.ru/3Wk8Pi"); });
+    } else {
+      flash("Ссылка: https://clck.ru/3Wk8Pi");
+    }
+  }
+  document.getElementById("share").onclick = shareSite;
+  function flash(m){
+    var d=document.createElement("div"); d.textContent=m;
+    d.style.cssText="position:fixed;bottom:14px;left:50%;transform:translateX(-50%);background:#000;color:#fff;padding:.6rem 1rem;border-radius:8px;font-size:.85rem;z-index:99";
+    document.body.appendChild(d); setTimeout(function(){d.remove()},2200);
+  }
 
   // Запуск: если ключ известен - сразу грузим список
   if (key) { hideLogin(); load(); }

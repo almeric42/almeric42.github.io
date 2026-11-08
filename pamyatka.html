@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b0d12">
+<meta name="description" content="Памятка: как подготовиться к удалённой установке операционной системы.">
+<title>Памятка к удалённой установке ОС</title>
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#0b0d12;--panel:#11141c;--text:#f3f5fa;--muted:#9ca5b7;
+  --line:rgba(255,255,255,.11);--accent:#b8f36b;--accent2:#8de0bd;--radius:18px;--max:820px;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;line-height:1.6}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(ellipse at 80% 5%,rgba(184,243,107,.07),transparent 35%),radial-gradient(ellipse at 10% 60%,rgba(101,122,255,.07),transparent 35%)}
+a{color:var(--accent);text-decoration:none}
+.wrap{width:min(var(--max),calc(100% - 32px));margin-inline:auto}
+.topbar{position:sticky;top:0;z-index:20;background:rgba(11,13,18,.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.nav{height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:15px;color:var(--text)}
+.brand-mark{width:32px;height:32px;border-radius:10px;background:var(--accent);display:grid;place-items:center;color:#10140b;font-weight:950;font-size:16px}
+.back{color:var(--muted);font-size:13px}.back:hover{color:var(--accent)}
+.page{padding:48px 0 60px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--accent);font-size:11px;font-weight:800;letter-spacing:.15em;text-transform:uppercase}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 14px var(--accent)}
+h1{font-size:clamp(26px,4.5vw,40px);line-height:1.1;letter-spacing:-.04em;margin:16px 0 10px}
+h1 .hl{color:var(--accent)}
+.lead{color:var(--muted);font-size:15px;max-width:620px;margin:0 0 30px}
+.card{background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.012));border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;margin-bottom:18px}
+.card h2{font-size:18px;letter-spacing:-.02em;margin:0 0 12px;display:flex;align-items:center;gap:10px}
+.card h2 .n{width:26px;height:26px;border-radius:8px;background:rgba(184,243,107,.12);color:var(--accent);display:grid;place-items:center;font-size:13px;flex:0 0 auto}
+ul.check{list-style:none;padding:0;margin:0}
+ul.check li{position:relative;padding:7px 0 7px 30px}
+ul.check li:before{content:"✓";position:absolute;left:0;top:7px;color:var(--accent);font-weight:900}
+.warn{border:1px solid rgba(230,166,45,.4);background:rgba(230,166,45,.07)}
+.warn h2 .n{background:rgba(230,166,45,.15);color:#ffc857}
+.warn li:before{color:#ffc857}
+.warn li.wx:before{content:"!"}
+.hint{color:var(--muted);font-size:13px;margin-top:8px}
+.foot{padding:24px 0 40px;border-top:1px solid var(--line);margin-top:20px;color:var(--muted);font-size:12px;text-align:center}
+.foot a{color:var(--accent)}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+@media(max-width:560px){.page{padding:36px 0 44px}.card{padding:18px}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap nav">
+    <div class="brand"><span class="brand-mark">💿</span> Компьютерная помощь</div>
+    <a class="back" href="./">← на главную</a>
+  </div>
+</header>
+
+<div class="wrap page">
+  <div class="eyebrow"><span class="dot"></span> Удалённая установка ОС · подготовка</div>
+  <h1>Что подготовить, чтобы установка прошла <span class="hl">быстро и без сюрпризов</span></h1>
+  <p class="lead">Перед сеансом уделите 10–15 минут этим шагам. Меньше времени уйдёт на саму установку, а ваши файлы и доступы будут в безопасности.</p>
+
+  <div class="card">
+    <h2><span class="n">1</span>Сделайте резервную копию</h2>
+    <ul class="check">
+      <li>Документы, фото, закладки браузера — скопируйте на флешку, внешний диск или в облако</li>
+      <li>Пароли и ключи — сохраните в надёжном месте (менеджер паролей или записанные отдельно)</li>
+      <li>Запишите, какие программы важны — после установки их надо будет поставить заново</li>
+    </ul>
+    <div class="hint">Правило: всё, чего не будет жалко потерять, должно быть в двух местах.</div>
+  </div>
+
+  <div class="card">
+    <h2><span class="n">2</span>Подготовьте носитель с дистрибутивом</h2>
+    <ul class="check">
+      <li>Загрузите образ ОС (Windows / Linux) с официального сайта</li>
+      <li>Запишите его на флешку 8 ГБ или больше — не в файл, а как загрузочный носитель (Rufus, balenaEtcher, Ventoy)</li>
+      <li>Убедитесь, что флешка вставлена и видна в системе</li>
+	</ul>
+    <div class="hint">Для удалённой установки будет удобно, если флешка уже записана до начала сеанса.</div>
+  </div>
+
+  <div class="card">
+    <h2><span class="n">3</span>Подготовьте компьютер</h2>
+    <ul class="check">
+      <li>Подключите ноутбук к питанию (не от батареи — установка долгая)</li>
+      <li>Убедитесь, что есть интернет (для драйверов и активации)</li>
+      <li>Продумайте доступ к BIOS: обычно это клавиша F2 / Del / F12 при включении</li>
+      <li>Уточните модель устройства и год выпуска — пригодится для диагностики</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2><span class="n">4</span>Подготовьте доступы</h2>
+    <ul class="check">
+      <li>Логин и пароль от учётной записи Microsoft / аккаунта ОС</li>
+      <li>Ключ активации Windows (если есть) — он может быть привязан к аккаунту или на наклейке</li>
+      <li>Договоритесь о способе связи и времени сеанса</li>
+    </ul>
+  </div>
+
+  <div class="card warn">
+    <h2><span class="n">!</span>Важно знать</h2>
+    <ul class="check">
+      <li class="wx">Удалённая установка возможна только при наличии удалённого доступа ПОСЛЕ первого входа в ОС — поэтому обычно это «переустановка с сохранением», либо установка на «чистый» подготовленный носитель</li>
+      <li class="wx">Полная «чистая» установка стирает раздел диска — резервная копия обязательна</li>
+      <li class="wx">Время сеанса зависит от скорости интернета и компьютера — заложите от 1 до 3 часов</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2><span class="n">5</span>Что будет делать мастер</h2>
+    <ul class="check">
+      <li>Подключится к вашему компьютеру удалённо (по вашей договорённости)</li>
+      <li>Проверит, что образ и доступы готовы</li>
+      <li>Выполнит установку или переустановку ОС, настроит драйверы и базовые программы</li>
+      <li>Поможет вернуть данные из резервной копии</li>
+    </ul>
+  </div>
+</div>
+
+<footer class="foot">
+  <div class="wrap">Компьютерная помощь · <a href="./">оставить заявку</a> · © <span id="year"></span></div>
+</footer>
+<script>document.getElementById("year").textContent=new Date().getFullYear();</script>
+</body>
+</html>

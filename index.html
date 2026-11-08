@@ -73,6 +73,9 @@ fieldset.urgency legend{font-weight:650;font-size:13px;padding:0 8px;color:var(-
 .urg{text-align:center;padding:12px 8px;border:1px solid var(--line);border-radius:12px;font-size:14px;color:var(--muted);cursor:pointer;background:rgba(255,255,255,.03);transition:.15s}
 .urg input{display:none}
 .urg:has(input:checked){border-color:var(--accent);background:var(--accent);color:#11150b;font-weight:700}
+.consent{display:flex;align-items:flex-start;gap:10px;margin:18px 0 0;font-size:12.5px;color:var(--muted);line-height:1.5;cursor:pointer}
+.consent input{width:16px;height:16px;flex:0 0 auto;margin-top:2px;accent-color:var(--accent)}
+.consent.errored{border:1px solid rgba(255,255,255,.14);background:rgba(255,120,120,.06);border-radius:10px;padding:10px 12px}
 .btn{display:block;width:100%;border:none;cursor:pointer;font:inherit;font-weight:800;font-size:15px;color:#11150b;background:var(--accent);padding:15px 18px;border-radius:13px;margin-top:20px;transition:transform .15s,background .15s}
 .btn:hover{transform:translateY(-2px)}
 .btn:disabled{opacity:.6;cursor:default;transform:none}
@@ -194,6 +197,8 @@ body.lit:after{opacity:1}
         <input id="time" name="time" type="text" placeholder="Например: вечером после 19:00, или выходные">
       </div>
 
+      <label class="consent"><input type="checkbox" id="agree" name="agree"> <span>Согласен(на) на обработку указанных данных для связи по заявке и получение ответа. Личные данные, сообщения и файлы за пределами заявки не запрашиваются и не обрабатываются. <a href="privacy.html" style="color:var(--accent);text-decoration:underline">Подробнее</a></span></label>
+
       <button class="btn" type="submit">Подготовить заявку →</button>
     </form>
 
@@ -206,7 +211,7 @@ body.lit:after{opacity:1}
 
   <footer class="foot">
     Компьютерная помощь · удалённый доступ через защищённое подключение
-    <br><a href="pamyatka.html">Памятка по удалённой установке операционных систем</a> · <a href="udalennaya-ustanovka-os.html">Как проходит установка</a> · <a href="pamyatka-telefon.html">Установка на телефон</a>
+    <br><a href="pamyatka.html">Памятка по удалённой установке операционных систем</a> · <a href="udalennaya-ustanovka-os.html">Как проходит установка</a> · <a href="pamyatka-telefon.html">Установка на телефон</a> · <a href="privacy.html">Конфиденциальность</a>
     <br>© <span id="year"></span> · Заявки обрабатываются при появлении свободного времени
   </footer>
 </div>
@@ -239,6 +244,9 @@ body.lit:after{opacity:1}
     };
     if(!d.name||!d.contact||!d.msg){form.reportValidity&&form.reportValidity();return;}
     if(!d.channel){window.alert("Выберите удобный способ связи.");return;}
+    var agree=document.getElementById("agree"),consentLabel=document.querySelector(".consent");
+    if(!agree.checked){ if(consentLabel){consentLabel.classList.add("errored");} window.alert("Подтвердите согласие на обработку данных."); return; }
+    if(consentLabel){consentLabel.classList.remove("errored");}
     var btn=form.querySelector("button[type=submit]"),oldText=btn.textContent;
     btn.disabled=true;btn.textContent="Отправляем…";
     fetch(SERVER,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(d)})

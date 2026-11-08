@@ -46,7 +46,8 @@ p.base-note{color:var(--muted);font-size:13px;margin:0 0 14px}
 .svc .sm{display:flex;align-items:center;gap:10px;min-height:58px;padding:11px 14px;border:1px solid var(--line);border-radius:13px;background:rgba(255,255,255,.025);font-weight:600;font-size:14px;color:var(--text);line-height:1.3;transition:.15s}
 .svc .si{display:block;color:var(--muted);font-size:12px;font-weight:400;margin-top:3px}
 .svc .ico{width:30px;height:30px;flex:0 0 auto;display:grid;place-items:center;font-size:16px;border-radius:9px;background:rgba(184,243,107,.1)}
-.svc input:checked + .sm{border-color:rgba(184,243,107,.5);background:rgba(184,243,107,.08);transform:translateY(-1px)}
+.svc input:checked + .sm{border-color:var(--accent);background:var(--accent);color:#11150b;transform:translateY(-1px)}
+.svc input:checked + .sm .si{color:#3d4a1a}
 .svc input:focus-visible + .sm{box-shadow:0 0 0 3px rgba(184,243,107,.22)}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 @media(max-width:560px){.row{grid-template-columns:1fr}}
@@ -54,6 +55,8 @@ label.bl{display:block;font-weight:650;font-size:13px;margin:0 0 8px}
 label.bl .req{color:var(--accent)}
 .hint{color:var(--muted);font-size:12px;margin:6px 0 0}
 input,select,textarea{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:12px;font:inherit;color:var(--text);background:rgba(255,255,255,.03);transition:border-color .15s,box-shadow .15s}
+select option{background:#11141c;color:#f3f5fa}
+select option:checked{background:var(--accent);color:#11150b}
 input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(184,243,107,.14)}
 textarea{min-height:96px;resize:vertical}
 .field{margin-bottom:18px}
@@ -69,7 +72,7 @@ fieldset.urgency legend{font-weight:650;font-size:13px;padding:0 8px;color:var(-
 @media(max-width:460px){.urg-opts{grid-template-columns:1fr}}
 .urg{text-align:center;padding:12px 8px;border:1px solid var(--line);border-radius:12px;font-size:14px;color:var(--muted);cursor:pointer;background:rgba(255,255,255,.03);transition:.15s}
 .urg input{display:none}
-.urg:has(input:checked){border-color:rgba(184,243,107,.5);background:rgba(184,243,107,.09);color:var(--accent);font-weight:700}
+.urg:has(input:checked){border-color:var(--accent);background:var(--accent);color:#11150b;font-weight:700}
 .btn{display:block;width:100%;border:none;cursor:pointer;font:inherit;font-weight:800;font-size:15px;color:#11150b;background:var(--accent);padding:15px 18px;border-radius:13px;margin-top:20px;transition:transform .15s,background .15s}
 .btn:hover{transform:translateY(-2px)}
 .btn:disabled{opacity:.6;cursor:default;transform:none}

@@ -33,7 +33,17 @@ button{font:inherit}
 .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 16px var(--accent)}
 h1{font-size:clamp(30px,5vw,48px);line-height:1.05;letter-spacing:-.045em;margin:18px 0 14px}
 h1 .highlight{color:var(--accent)}
-.lead{color:var(--muted);font-size:15px;max-width:560px;margin:0 0 8px}
+.lead{color:var(--muted);font-size:15px;max-width:560px;margin:0 0 18px}
+.hero-cta{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:6px}
+.hero-sub{color:var(--muted);font-size:13px}
+.trust{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px}
+@media(max-width:640px){.trust{grid-template-columns:1fr 1fr}}
+.trust-item{display:flex;align-items:center;gap:9px;padding:11px 13px;border:1px solid var(--line);border-radius:13px;background:rgba(255,255,255,.03);font-weight:600;font-size:13px}
+.trust-ico{font-size:17px}
+.guarantee{display:flex;gap:16px;align-items:flex-start;margin-top:14px;border-color:rgba(184,243,107,.35);background:linear-gradient(145deg,rgba(184,243,107,.08),rgba(141,224,189,.04))}
+.guarantee-ico{font-size:34px;line-height:1;flex:0 0 auto}
+.guarantee-title{font-weight:800;font-size:16px;margin-bottom:4px;color:var(--accent)}
+.guarantee-desc{color:var(--muted);font-size:13.5px;line-height:1.5}
 .card{background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.012));border:1px solid var(--line);border-radius:var(--radius);padding:26px 26px 30px;margin-bottom:18px;backdrop-filter:blur(14px)}
 .card+.card{margin-top:0}
 .card-title{display:flex;align-items:center;gap:8px;color:var(--accent);font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px}
@@ -63,6 +73,8 @@ p.base-note{color:var(--muted);font-size:13px;margin:0 0 14px}
 .pt-name{font-weight:700;font-size:15px}
 .pt-desc{color:var(--muted);font-size:12.5px;line-height:1.45}
 .pt-price{font-size:23px;font-weight:900;color:var(--accent);margin-top:6px}
+.pt-old{color:#5d6575;font-size:14px;font-weight:600;text-decoration:line-through;text-decoration-color:#ff6b6b;text-decoration-thickness:2px;margin-left:8px}
+#flag{background:linear-gradient(145deg,rgba(184,243,107,.12),rgba(141,224,189,.06));border-color:rgba(184,243,107,.45)}
 .pt-full{grid-column:1/-1;flex-direction:row;align-items:center;gap:16px}
 .pt-full .pt-ico{font-size:30px}
 .pt-full .pt-full-txt{flex:1}
@@ -147,10 +159,29 @@ body.lit:after{opacity:1}
 
 <div class="wrap-narrow">
   <section class="hero">
-    <div class="eyebrow"><span class="dot"></span> Удалённая компьютерная помощь</div>
-    <h1>Оставьте заявку —<br>отвечу, когда <span class="highlight">освобожусь</span>.</h1>
-    <p class="lead">Звонить не нужно. Заполните короткую форму и выберите, каким способом вам удобнее получить ответ. Подключусь к вашему компьютеру через интернет — выезд не нужен.</p>
+    <div class="eyebrow"><span class="dot"></span> Удалённая компьютерная помощь · без выезда</div>
+    <h1>Починю компьютер —<br><span class="highlight">онлайн, без вашего участия</span>.</h1>
+    <p class="lead">Оставьте заявку — отвечу в течение <b>1–2 часов</b> в рабочее время. Подключусь к вашему компьютеру через интернет, посмотрю проблему и скажу точную стоимость.</p>
+    <div class="hero-cta">
+      <a href="#zayavka" class="btn btn-lg">Оставить заявку →</a>
+      <span class="hero-sub">Первая диагностика — бесплатно</span>
+    </div>
   </section>
+
+  <div class="trust">
+    <div class="trust-item"><span class="trust-ico">⚡</span><span>Отвечаю быстро</span></div>
+    <div class="trust-item"><span class="trust-ico">🔒</span><span>Работаю по договорённости</span></div>
+    <div class="trust-item"><span class="trust-ico">💎</span><span>Цены ниже рынка</span></div>
+    <div class="trust-item"><span class="trust-ico">🛡</span><span>Гарантия на работу</span></div>
+  </div>
+
+  <div class="card guarantee">
+    <div class="guarantee-ico">🛡</div>
+    <div class="guarantee-txt">
+      <div class="guarantee-title">Гарантия на работу</div>
+      <div class="guarantee-desc">Если после установки что-то не заработает — я вернусь и исправлю бесплатно. Я работаю только с официальными версиями систем и программ, без серых сборок.</div>
+    </div>
+  </div>
 
   <div class="card">
     <div class="card-title"><span class="dot"></span>С чем я могу помочь</div>
@@ -198,13 +229,14 @@ body.lit:after{opacity:1}
         <div class="pt-desc">Обе на одном компьютере, с выбором при старте</div>
         <div class="pt-price">2 800 ₽</div>
       </div>
-      <div class="ptile pt-full">
+      <div class="ptile pt-full" id="flag">
+        <div class="pt-tag">самый ходовой</div>
         <div class="pt-ico">⭐</div>
         <div class="pt-full-txt">
           <div class="pt-name">Полное обслуживание ПК</div>
           <div class="pt-desc">Установка ОС + все программы + драйверы + настройка под вас + чистка от мусора. Работаю удалённо, вы только смотрите.</div>
         </div>
-        <div class="pt-price">3 500 ₽</div>
+        <div class="pt-price">3 500 ₽ <span class="pt-old">5 500 ₽</span></div>
       </div>
     </div>
     <p class="price-note">Цены ниже средних по рынку: я работаю без аренды сервиса, поэтому дешевле. Точную стоимость назову после короткого осмотра вашего компьютера.</p>

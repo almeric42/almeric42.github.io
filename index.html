@@ -49,6 +49,24 @@ p.base-note{color:var(--muted);font-size:13px;margin:0 0 14px}
 .svc input:checked + .sm .box{background:var(--accent);border-color:var(--accent)}
 .svc input:checked + .sm .box:after{opacity:1;transform:scale(1)}
 .svc .si{display:block;color:var(--muted);font-size:12px;font-weight:400;margin-top:3px}
+.svc{position:relative}
+.svc .hit{display:inline-block;margin-left:8px;padding:2px 8px;border-radius:20px;background:linear-gradient(135deg,#8de0bd,#b8f36b);color:#0d1410;font-size:10px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;vertical-align:middle;box-shadow:0 2px 10px rgba(184,243,107,.35)}
+.svc:has(.hit){border-color:transparent}
+.svc:has(input:checked) .sm{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),0 6px 24px rgba(184,243,107,.12)}
+.price-group{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:600px){.price-group{grid-template-columns:1fr}}
+.ptile{position:relative;display:flex;flex-direction:column;gap:6px;padding:18px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.03);transition:.15s}
+.ptile:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.2)}
+.pt-hot{background:linear-gradient(145deg,rgba(184,243,107,.1),rgba(141,224,189,.05));border-color:rgba(184,243,107,.4)}
+.pt-tag{position:absolute;top:-9px;right:14px;padding:3px 10px;border-radius:20px;background:linear-gradient(135deg,#8de0bd,#b8f36b);color:#0d1410;font-size:10px;font-weight:900;letter-spacing:.06em;text-transform:uppercase}
+.pt-ico{font-size:26px;line-height:1}
+.pt-name{font-weight:700;font-size:15px}
+.pt-desc{color:var(--muted);font-size:12.5px;line-height:1.45}
+.pt-price{font-size:23px;font-weight:900;color:var(--accent);margin-top:6px}
+.pt-full{grid-column:1/-1;flex-direction:row;align-items:center;gap:16px}
+.pt-full .pt-ico{font-size:30px}
+.pt-full .pt-full-txt{flex:1}
+.price-note{color:var(--muted);font-size:12.5px;line-height:1.5;margin:14px 2px 0}
 .svc .ico{width:30px;height:30px;flex:0 0 auto;display:grid;place-items:center;font-size:16px;border-radius:9px;background:rgba(184,243,107,.1)}
 .svc input:checked + .sm{border-color:var(--accent);background:var(--accent);color:#11150b;transform:translateY(-1px)}
 .svc input:checked + .sm .si{color:#3d4a1a}
@@ -133,7 +151,7 @@ body.lit:after{opacity:1}
     <p class="base-note">Отметьте галочками, что нужно:</p>
     <div class="svc-group">
       <label class="svc"><input type="checkbox" name="svc" value="удалённая настройка компьютера"><span class="sm"><span class="box"></span><span class="ico">🖥</span><span>Удалённая настройка ПК<span class="si">Разберусь дистанционно: ускорю, настрою, починю</span></span></span></label>
-      <label class="svc"><input type="checkbox" name="svc" value="установка операционной системы"><span class="sm"><span class="box"></span><span class="ico">💿</span><span>Установка ОС<span class="si">Windows с нуля или переустановка без потери файлов</span></span></span></label>
+      <label class="svc"><input type="checkbox" name="svc" value="автоматическая установка операционной системы (Linux/Windows)"><span class="sm"><span class="box"></span><span class="ico">💿</span><span>Автоустановка ОС<span class="si">Windows / Linux — система ставится сама, без вашего участия</span><span class="hit">хит</span></span></span></label>
       <label class="svc"><input type="checkbox" name="svc" value="компьютер завис / не грузится / синий экран"><span class="sm"><span class="box"></span><span class="ico">🔥</span><span>Завис, не грузится<span class="si">Тормоза, синий экран, не включается</span></span></span></label>
       <label class="svc"><input type="checkbox" name="svc" value="удалить вирусы, очистить рекламу"><span class="sm"><span class="box"></span><span class="ico">🦠</span><span>Вирусы и реклама<span class="si">Удаление вредоносных программ, чистка браузера</span></span></span></label>
       <label class="svc"><input type="checkbox" name="svc" value="установка и настройка программ, драйверов"><span class="sm"><span class="box"></span><span class="ico">🧩</span><span>Программы и драйверы<span class="si">Постановка софта, обновления, драйверы</span></span></span></label>
@@ -144,6 +162,46 @@ body.lit:after{opacity:1}
       <label class="svc"><input type="checkbox" name="svc" value="обучение работе на компьютере"><span class="sm"><span class="box"></span><span class="ico">🎓</span><span>Обучу работать на ПК<span class="si">Терпеливо покажу, как пользоваться</span></span></span></label>
       <label class="svc"><input type="checkbox" name="svc" value="что-то другое — опишу в проблеме"><span class="sm"><span class="box"></span><span class="ico">🤝</span><span>Другое<span class="si">Что-то своё — расскажу в проблеме</span></span></span></label>
     </div>
+  </div>
+
+  <div class="card price-card">
+    <div class="card-title"><span class="dot"></span>Цены на установку ОС</div>
+    <div class="price-group">
+      <div class="ptile">
+        <div class="pt-ico">💿</div>
+        <div class="pt-name">Установка ОС с нуля</div>
+        <div class="pt-desc">Windows или Linux, начистую, без сохранения данных</div>
+        <div class="pt-price">1 400 ₽</div>
+      </div>
+      <div class="ptile pt-hot">
+        <div class="pt-tag">популярное</div>
+        <div class="pt-ico">🔄</div>
+        <div class="pt-name">Переустановка с сохранением</div>
+        <div class="pt-desc">Файлы, фото и документы на месте</div>
+        <div class="pt-price">1 900 ₽</div>
+      </div>
+      <div class="ptile">
+        <div class="pt-ico">🐧</div>
+        <div class="pt-name">Переход на Linux</div>
+        <div class="pt-desc">Быстрее и без вирусов, помогу переехать</div>
+        <div class="pt-price">2 200 ₽</div>
+      </div>
+      <div class="ptile">
+        <div class="pt-ico">🪟</div>
+        <div class="pt-name">Windows + Linux (две ОС)</div>
+        <div class="pt-desc">Обе на одном компьютере, с выбором при старте</div>
+        <div class="pt-price">2 800 ₽</div>
+      </div>
+      <div class="ptile pt-full">
+        <div class="pt-ico">⭐</div>
+        <div class="pt-full-txt">
+          <div class="pt-name">Полное обслуживание ПК</div>
+          <div class="pt-desc">Установка ОС + все программы + драйверы + настройка под вас + чистка от мусора. Работаю удалённо, вы только смотрите.</div>
+        </div>
+        <div class="pt-price">3 500 ₽</div>
+      </div>
+    </div>
+    <p class="price-note">Цены ниже средних по рынку: я работаю без аренды сервиса, поэтому дешевле. Точную стоимость назову после короткого осмотра вашего компьютера.</p>
   </div>
 
   <div class="card">

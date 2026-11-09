@@ -44,6 +44,10 @@ p.base-note{color:var(--muted);font-size:13px;margin:0 0 14px}
 .svc{position:relative;cursor:pointer;user-select:none}
 .svc input{position:absolute;opacity:0;pointer-events:none}
 .svc .sm{display:flex;align-items:center;gap:10px;min-height:58px;padding:11px 14px;border:1px solid var(--line);border-radius:13px;background:rgba(255,255,255,.025);font-weight:600;font-size:14px;color:var(--text);line-height:1.3;transition:.15s}
+.svc .box{width:22px;height:22px;flex:0 0 auto;border:2px solid var(--line);border-radius:7px;display:grid;place-items:center;margin-right:2px;transition:border-color .15s,background .15s}
+.svc .box:after{content:"✓";font-size:14px;font-weight:900;color:#11150b;opacity:0;transform:scale(.5);transition:.15s}
+.svc input:checked + .sm .box{background:var(--accent);border-color:var(--accent)}
+.svc input:checked + .sm .box:after{opacity:1;transform:scale(1)}
 .svc .si{display:block;color:var(--muted);font-size:12px;font-weight:400;margin-top:3px}
 .svc .ico{width:30px;height:30px;flex:0 0 auto;display:grid;place-items:center;font-size:16px;border-radius:9px;background:rgba(184,243,107,.1)}
 .svc input:checked + .sm{border-color:var(--accent);background:var(--accent);color:#11150b;transform:translateY(-1px)}
@@ -128,17 +132,17 @@ body.lit:after{opacity:1}
     <div class="card-title"><span class="dot"></span>С чем я могу помочь</div>
     <p class="base-note">Отметьте галочками, что нужно:</p>
     <div class="svc-group">
-      <label class="svc"><input type="checkbox" name="svc" value="удалённая настройка компьютера"><span class="sm"><span class="ico">🖥</span><span>Удалённая настройка ПК<span class="si">Разберусь дистанционно: ускорю, настрою, починю</span></span></span></label>
-      <label class="svc"><input type="checkbox" name="svc" value="установка операционной системы"><span class="sm"><span class="ico">💿</span><span>Установка ОС<span class="si">Windows с нуля или переустановка без потери файлов</span></span></span></label>
-      <label class="svc"><input type="checkbox" name="svc" value="компьютер завис / не грузится / синий экран"><span class="sm"><span class="ico">🔥</span><span>Завис, не грузится<span class="si">Тормоза, синий экран, не включается</span></span></span></label>
-      <label class="svc"><input type="checkbox" name="svc" value="удалить вирусы, очистить рекламу"><span class="sm"><span class="ico">🦠</span><span>Вирусы и реклама<span class="si">Удаление вредоносных программ, чистка браузера</span></span></span></label>
-      <label class="svc"><input type="checkbox" name="svc" value="установка и настройка программ, драйверов"><span class="sm"><span class="ico">🧩</span><span>Программы и драйверы<span class="si">Постановка софта, обновления, драйверы</span></span></span></label>
-      <label class="svc"><input type="checkbox" name="svc" value="настройка Wi-Fi, роутера, интернета"><span class="sm"><span class="ico">📡</span><span>Wi-Fi и интернет<span class="si">Роутер, подключение, низкая скорость</span></span></span></label>
-      <label class="svc"><input type="checkbox" name="svc" value="настройка принтера, сканера, печати"><span class="sm"><span class="ico">🖨</span><span>Принтер и сканер<span class="si">Печать, драйверы, ошибки</span></span></span></label>
-      <label class="svc"><input type="checkbox" name="svc" value="перенос файлов, фото, настройка почты"><span class="sm"><span class="ico">📁</span><span>Файлы, фото, почта<span class="si">Перенос данных, настройка электронной почты</span></span></span></label>
-      <label class="svc"><input type="checkbox" name="svc" value="настройка телефона, синхронизация с ПК"><span class="sm"><span class="ico">📱</span><span>Телефон и планшет<span class="si">Настройка, синхронизация, перенос</span></span></span></label>
-      <label class="svc"><input type="checkbox" name="svc" value="обучение работе на компьютере"><span class="sm"><span class="ico">🎓</span><span>Обучу работать на ПК<span class="si">Терпеливо покажу, как пользоваться</span></span></span></label>
-      <label class="svc"><input type="checkbox" name="svc" value="что-то другое — опишу в проблеме"><span class="sm"><span class="ico">🤝</span><span>Другое<span class="si">Что-то своё — расскажу в проблеме</span></span></span></label>
+      <label class="svc"><input type="checkbox" name="svc" value="удалённая настройка компьютера"><span class="sm"><span class="box"></span><span class="ico">🖥</span><span>Удалённая настройка ПК<span class="si">Разберусь дистанционно: ускорю, настрою, починю</span></span></span></label>
+      <label class="svc"><input type="checkbox" name="svc" value="установка операционной системы"><span class="sm"><span class="box"></span><span class="ico">💿</span><span>Установка ОС<span class="si">Windows с нуля или переустановка без потери файлов</span></span></span></label>
+      <label class="svc"><input type="checkbox" name="svc" value="компьютер завис / не грузится / синий экран"><span class="sm"><span class="box"></span><span class="ico">🔥</span><span>Завис, не грузится<span class="si">Тормоза, синий экран, не включается</span></span></span></label>
+      <label class="svc"><input type="checkbox" name="svc" value="удалить вирусы, очистить рекламу"><span class="sm"><span class="box"></span><span class="ico">🦠</span><span>Вирусы и реклама<span class="si">Удаление вредоносных программ, чистка браузера</span></span></span></label>
+      <label class="svc"><input type="checkbox" name="svc" value="установка и настройка программ, драйверов"><span class="sm"><span class="box"></span><span class="ico">🧩</span><span>Программы и драйверы<span class="si">Постановка софта, обновления, драйверы</span></span></span></label>
+      <label class="svc"><input type="checkbox" name="svc" value="настройка Wi-Fi, роутера, интернета"><span class="sm"><span class="box"></span><span class="ico">📡</span><span>Wi-Fi и интернет<span class="si">Роутер, подключение, низкая скорость</span></span></span></label>
+      <label class="svc"><input type="checkbox" name="svc" value="настройка принтера, сканера, печати"><span class="sm"><span class="box"></span><span class="ico">🖨</span><span>Принтер и сканер<span class="si">Печать, драйверы, ошибки</span></span></span></label>
+      <label class="svc"><input type="checkbox" name="svc" value="перенос файлов, фото, настройка почты"><span class="sm"><span class="box"></span><span class="ico">📁</span><span>Файлы, фото, почта<span class="si">Перенос данных, настройка электронной почты</span></span></span></label>
+      <label class="svc"><input type="checkbox" name="svc" value="настройка телефона, синхронизация с ПК"><span class="sm"><span class="box"></span><span class="ico">📱</span><span>Телефон и планшет<span class="si">Настройка, синхронизация, перенос</span></span></span></label>
+      <label class="svc"><input type="checkbox" name="svc" value="обучение работе на компьютере"><span class="sm"><span class="box"></span><span class="ico">🎓</span><span>Обучу работать на ПК<span class="si">Терпеливо покажу, как пользоваться</span></span></span></label>
+      <label class="svc"><input type="checkbox" name="svc" value="что-то другое — опишу в проблеме"><span class="sm"><span class="box"></span><span class="ico">🤝</span><span>Другое<span class="si">Что-то своё — расскажу в проблеме</span></span></span></label>
     </div>
   </div>
 

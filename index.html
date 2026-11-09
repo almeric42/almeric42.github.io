@@ -44,6 +44,15 @@ h1 .highlight{color:var(--accent)}
 .guarantee-ico{font-size:34px;line-height:1;flex:0 0 auto}
 .guarantee-title{font-weight:800;font-size:16px;margin-bottom:4px;color:var(--accent)}
 .guarantee-desc{color:var(--muted);font-size:13.5px;line-height:1.5}
+.reviews{border-color:rgba(184,243,107,.3)}
+.reviews-top{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.reviews-ico{font-size:26px;line-height:1;flex:0 0 auto}
+.reviews-top>div:nth-child(2){flex:1;min-width:200px}
+.reviews-title{font-weight:800;font-size:16px;margin-bottom:3px}
+.reviews-desc{color:var(--muted);font-size:13px;line-height:1.45}
+.reviews-links{display:flex;gap:8px;flex-wrap:wrap}
+.reviews-link{display:inline-block;padding:9px 14px;border:1px solid var(--line);border-radius:11px;background:rgba(255,255,255,.03);color:var(--accent);font-weight:600;font-size:13px;text-decoration:none;transition:.15s}
+.reviews-link:hover{border-color:var(--accent);background:rgba(184,243,107,.08)}
 .card{background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.012));border:1px solid var(--line);border-radius:var(--radius);padding:26px 26px 30px;margin-bottom:18px;backdrop-filter:blur(14px)}
 .card+.card{margin-top:0}
 .card-title{display:flex;align-items:center;gap:8px;color:var(--accent);font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px}
@@ -180,6 +189,20 @@ body.lit:after{opacity:1}
     <div class="guarantee-txt">
       <div class="guarantee-title">Гарантия на работу</div>
       <div class="guarantee-desc">Опыт более 15 лет — в сервисных центрах и на частных заказах. Если после установки что-то не заработает — я вернусь и исправлю бесплатно. Работаю только с официальными версиями систем и программ, без серых сборок.</div>
+    </div>
+  </div>
+
+  <div class="card reviews">
+    <div class="reviews-top">
+      <div class="reviews-ico">⭐</div>
+      <div>
+        <div class="reviews-title">Отзывы на Яндекс.Услугах и Авито</div>
+        <div class="reviews-desc">Ремонт аудио-техники — тот же внимательный подход к работе. Хорошие оценки оставлены и там, и там.</div>
+      </div>
+      <div class="reviews-links">
+        <a class="reviews-link" href="https://uslugi.yandex.ru" target="_blank" rel="noopener">Яндекс.Услуги →</a>
+        <a class="reviews-link" href="https://www.avito.ru" target="_blank" rel="noopener">Авито →</a>
+      </div>
     </div>
   </div>
 

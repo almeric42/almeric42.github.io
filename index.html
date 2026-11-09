@@ -67,6 +67,12 @@ p.base-note{color:var(--muted);font-size:13px;margin:0 0 14px}
 .pt-full .pt-ico{font-size:30px}
 .pt-full .pt-full-txt{flex:1}
 .price-note{color:var(--muted);font-size:12.5px;line-height:1.5;margin:14px 2px 0}
+.steps{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:600px){.steps{grid-template-columns:1fr}}
+.step{display:flex;gap:13px;padding:15px 16px;border:1px solid var(--line);border-radius:15px;background:rgba(255,255,255,.03)}
+.step-n{flex:0 0 auto;width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,#8de0bd,#b8f36b);color:#0d1410;font-weight:900;font-size:14px;display:grid;place-items:center}
+.step-name{font-weight:700;font-size:14px;margin-bottom:3px}
+.step-desc{color:var(--muted);font-size:12.5px;line-height:1.45}
 .svc .ico{width:30px;height:30px;flex:0 0 auto;display:grid;place-items:center;font-size:16px;border-radius:9px;background:rgba(184,243,107,.1)}
 .svc input:checked + .sm{border-color:var(--accent);background:var(--accent);color:#11150b;transform:translateY(-1px)}
 .svc input:checked + .sm .si{color:#3d4a1a}
@@ -202,6 +208,47 @@ body.lit:after{opacity:1}
       </div>
     </div>
     <p class="price-note">Цены ниже средних по рынку: я работаю без аренды сервиса, поэтому дешевле. Точную стоимость назову после короткого осмотра вашего компьютера.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="dot"></span>Как проходит установка</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-n">1</div>
+        <div class="step-body">
+          <div class="step-name">Оставляете заявку</div>
+          <div class="step-desc">Заполняете форму ниже — я отвечу удобным вам способом и уточню детали.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">2</div>
+        <div class="step-body">
+          <div class="step-name">Согласуем параметры</div>
+          <div class="step-desc">Какую ОС, с сохранением файлов или начистую, какой у вас компьютер.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">3</div>
+        <div class="step-body">
+          <div class="step-name">Готовлю загрузочный носитель</div>
+          <div class="step-desc">Флешку с образом и «ответным файлом» — установщик сам прочитает все настройки.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">4</div>
+        <div class="step-body">
+          <div class="step-name">Система ставится сама</div>
+          <div class="step-desc">Вы только загружаетесь с флешки — дальше всё происходит без вашего участия.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">5</div>
+        <div class="step-body">
+          <div class="step-name">Проверяю результат</div>
+          <div class="step-desc">Подключаюсь и убеждаюсь, что всё работает: драйверы, интернет, программы.</div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="card">

@@ -415,10 +415,8 @@ body.lit:after{opacity:1}
 
 <script>
 (function(){
-  // ⭐ Адрес сервера заявок. Если сайт и сервер на одном домене — можно "/api/zayavka".
-  // Если файл открывается отдельно, укажите полный адрес сервера:
-  // var SERVER = "http://192.168.1.37:8090/api/zayavka";
-  var SERVER = "/api/zayavka";
+  // ⭐ Адрес сервера заявок = Google Apps Script (умеет приём + панель).
+  var SERVER = "https://script.google.com/macros/s/AKfycbzYc8Lix9yaMkr5u-1hwX2-x7-Lira6QPQwk26i13eb8VDIPzZeKd9KWcDVYl3HQMZB/exec";
   var CHANNEL_NAME = {wa:"WhatsApp", tg:"Telegram", vk:"VK", mail:"email"};
   var form = document.getElementById("zayavka");
   var result = document.getElementById("result");

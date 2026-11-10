@@ -25,7 +25,9 @@ button{font:inherit}
 .topbar{position:sticky;top:0;z-index:20;background:rgba(11,13,18,.82);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
 .nav{height:70px;display:flex;align-items:center;justify-content:space-between;gap:20px}
 .brand{display:flex;align-items:center;gap:11px;font-weight:800;letter-spacing:-.02em;font-size:16px}
-.brand-mark{width:34px;height:34px;border-radius:11px;background:var(--accent);display:grid;place-items:center;color:#10140b;font-weight:950;font-size:18px}
+.brand{position:relative}
+.brand-mark{width:34px;height:34px;border-radius:11px;background:var(--accent);display:grid;place-items:center;color:#10140b;font-weight:950;font-size:18px;position:relative}
+.brand-mark .om{position:absolute;top:-7px;right:-7px;font-size:12px;font-weight:900;color:var(--accent2);background:var(--bg);border:1px solid var(--accent2);border-radius:6px;padding:0 2px;line-height:1.1;display:inline-block}
 .brand small{display:block;color:var(--muted);font-weight:500;font-size:11px;letter-spacing:0}
 .nav-badge{color:var(--muted);font-size:12px}
 .hero{padding:68px 0 40px;position:relative;overflow:hidden}
@@ -170,7 +172,7 @@ body.lit:after{opacity:1}
 <canvas id="binary-bg" aria-hidden="true"></canvas>
 <header class="topbar">
   <div class="wrap nav">
-    <div class="brand"><span class="brand-mark">🛠</span><span>Компьютерная помощь<small>удалённо · без выезда</small></span></div>
+    <div class="brand"><span class="brand-mark">🛠<b class="om">ॐ</b></span><span>Компьютерная помощь<small>удалённо · без выезда</small></span></div>
     <span class="nav-badge"><a href="pamyatka.html" style="color:var(--muted);text-decoration:underline">📋 Памятка по удалённой установке операционных систем</a> · заявка · 1 минута</span>
   </div>
 </header>

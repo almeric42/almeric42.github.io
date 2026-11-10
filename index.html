@@ -64,6 +64,7 @@ h1 .highlight{color:var(--accent)}
 .consult-desc{color:var(--muted);font-size:13px;line-height:1.5}
 .consult-price{font-weight:900;font-size:20px;color:var(--accent);margin-top:8px}
 .consult-paid .consult-price{color:var(--accent2)}
+.hp{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
 .card{background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.012));border:1px solid var(--line);border-radius:var(--radius);padding:26px 26px 30px;margin-bottom:18px;backdrop-filter:blur(14px)}
 .card+.card{margin-top:0}
 .card-title{display:flex;align-items:center;gap:8px;color:var(--accent);font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px}
@@ -344,6 +345,8 @@ body.lit:after{opacity:1}
     <div class="card-title"><span class="dot"></span>Форма заявки</div>
 
     <form id="zayavka" novalidate>
+      <!-- honeypot: невидимое для человека поле против ботов -->
+      <div class="hp" aria-hidden="true"><label>Оставьте это поле пустым<input type="text" name="companyName" tabindex="-1" autocomplete="off"></label></div>
       <div class="row">
         <div class="field">
           <label class="bl" for="name">Ваше имя <span class="req">*</span></label>
